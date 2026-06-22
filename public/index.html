@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Widget Builder</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-row">
+        <div>
+          <h1>AI Widget Builder</h1>
+          <p class="subtitle">Pick a product, configure it, test it, embed it.</p>
+        </div>
+        <div class="user-bar" id="user-bar">
+          <img id="user-avatar" class="user-avatar hidden" alt="">
+          <span id="user-name"></span>
+          <button id="btn-logout" class="btn btn-secondary btn-sm">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="steps" aria-label="Progress">
+      <div class="step active" data-step="1"><span>1</span> Product</div>
+      <div class="step" data-step="2"><span>2</span> Config</div>
+      <div class="step" data-step="3"><span>3</span> Test</div>
+      <div class="step" data-step="4"><span>4</span> Embed</div>
+    </nav>
+
+    <!-- Step 1: Pick product type -->
+    <section id="step-1" class="panel active">
+      <h2>Choose a product type</h2>
+      <div id="product-cards" class="product-cards"></div>
+      <div class="actions">
+        <button id="btn-step1-next" class="btn btn-primary" disabled>Continue</button>
+      </div>
+    </section>
+
+    <!-- Step 2: Config form -->
+    <section id="step-2" class="panel">
+      <h2>Configure your widget</h2>
+      <form id="config-form" class="config-form">
+        <div class="field">
+          <label for="bot-name">Widget Name</label>
+          <input type="text" id="bot-name" name="botName" placeholder="My Widget" required>
+        </div>
+        <div id="dynamic-fields"></div>
+      </form>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" data-back="1">Back</button>
+        <button id="btn-step2-next" class="btn btn-primary">Save &amp; Test</button>
+      </div>
+    </section>
+
+    <!-- Step 3: Test / preview -->
+    <section id="step-3" class="panel">
+      <h2>Test your widget</h2>
+      <div id="chat-preview" class="preview-chat hidden">
+        <div id="chat-messages" class="chat-messages"></div>
+        <form id="chat-form" class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        <p id="hot-lead-badge" class="hot-lead-badge hidden"></p>
+      </div>
+      <div id="static-preview" class="preview-static hidden">
+        <div id="static-card" class="static-card">
+          <p class="static-loading">Generating summary...</p>
+        </div>
+        <button id="btn-rebuild" class="btn btn-secondary">Regenerate Summary</button>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" data-back="2">Back</button>
+        <button id="btn-step3-next" class="btn btn-primary">Get Embed Code</button>
+      </div>
+    </section>
+
+    <!-- Step 4: Embed -->
+    <section id="step-4" class="panel">
+      <h2>Embed on your website</h2>
+      <p>Copy this snippet and paste it before the closing <code>&lt;/body&gt;</code> tag, or into a WordPress Custom HTML block.</p>
+      <div class="embed-box">
+        <pre id="embed-snippet"></pre>
+        <button id="btn-copy" class="btn btn-primary">Copy to Clipboard</button>
+      </div>
+      <div class="messages-review">
+        <h3>Visitor Messages</h3>
+        <p class="hint">Anonymous messages from visitors using your widget (most recent first).</p>
+        <div id="visitor-messages" class="visitor-messages"></div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" data-back="3">Back</button>
+        <button id="btn-start-over" class="btn btn-secondary">Start Over</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/builder.js"></script>
+</body>
+</html>
