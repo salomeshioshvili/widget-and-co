@@ -1,6 +1,7 @@
 const express = require('express');
 const getSupabase = require('../lib/supabase');
 const requireAuth = require('../middleware/requireAuth');
+const corsPublic = require('../middleware/corsPublic');
 const { getProductType, listProductTypes } = require('../productTypes');
 
 const router = express.Router();
@@ -36,7 +37,7 @@ router.post('/bots', requireAuth, async (req, res) => {
   }
 });
 
-router.get('/bots/:id', async (req, res) => {
+router.get('/bots/:id', corsPublic, async (req, res) => {
   try {
     const { data, error } = await getSupabase()
       .from('bots')

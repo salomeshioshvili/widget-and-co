@@ -21,7 +21,7 @@ const fs = require('fs');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-const { configurePassport } = require('./lib/auth');
+const { configurePassport, getOAuthCallbackUrl } = require('./lib/auth');
 const { sitemapXml, renderBuilderPage, renderDashboardPage, renderAdminPage } = require('./lib/seo');
 const { isAdmin } = require('./middleware/requireAdmin');
 
@@ -38,6 +38,10 @@ configurePassport();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isProduction =
+  process.env.NODE_ENV === 'production' || (process.env.BASE_URL || '').startsWith('https://');
+
+app.set('trust proxy', 1);
 
 app.use(express.json());
 app.use(
@@ -47,7 +51,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: isProduction,
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     },
   })
@@ -112,4 +117,5 @@ app.use(express.static(path.join(__dirname, 'public'), { index: false }));
 
 app.listen(PORT, () => {
   console.log(`AI Widget Builder running at ${process.env.BASE_URL}`);
+  console.log(`Google OAuth callback: ${getOAuthCallbackUrl()}`);
 });

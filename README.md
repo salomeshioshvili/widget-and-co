@@ -77,9 +77,6 @@ alter table conversations disable row level security;
 alter table messages disable row level security;
 ```
 
-alter table messages disable row level security;
-```
-
 ## 3. Set Up Google Sign-In
 
 The builder requires Google sign-in. Embedded widgets on customer sites stay public (no login for visitors).
@@ -87,10 +84,14 @@ The builder requires Google sign-in. Embedded widgets on customer sites stay pub
 1. Go to [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials)
 2. Create a project (or pick an existing one)
 3. **Create Credentials → OAuth client ID → Web application**
-4. **Authorized redirect URIs:** `http://localhost:3000/auth/google/callback`
-   - For production, also add `https://your-domain.com/auth/google/callback`
-5. Copy **Client ID** → `GOOGLE_CLIENT_ID` and **Client secret** → `GOOGLE_CLIENT_SECRET`
-6. Add to `.env`:
+4. **Authorized redirect URIs** (must match `BASE_URL` exactly):
+   - Local: `http://localhost:3000/auth/google/callback`
+   - Render: `https://your-app.onrender.com/auth/google/callback`
+5. **Authorized JavaScript origins** (same host, no path):
+   - `http://localhost:3000`
+   - `https://your-app.onrender.com`
+6. Copy **Client ID** → `GOOGLE_CLIENT_ID` and **Client secret** → `GOOGLE_CLIENT_SECRET`
+7. Add to `.env`:
    - `SESSION_SECRET` — any long random string (e.g. `openssl rand -hex 32`)
    - `BASE_URL` — `http://localhost:3000` locally (no trailing slash)
    - `ADMIN_EMAILS` — your Google email (for `/admin` dashboard access)
@@ -130,17 +131,35 @@ After building a widget in the UI, copy the embed snippet:
 
 Paste before `</body>` or into a WordPress **Custom HTML** block. The widget talks only to your server's `/api/chat` endpoint — API keys stay server-side.
 
-## 6. Deploy for Free
+## 6. Deploy on Render
 
-### Render
+Everything runs on one Render web service — marketing site, builder, OAuth, and APIs.
 
 1. Push this repo to GitHub
-2. [render.com](https://render.com/) → **New Web Service** → connect repo
-3. **Build command:** `npm install`
-4. **Start command:** `npm start`
-5. Add environment variables: `GROQ_API_KEY`, `SUPABASE_URL`, `SUPABASE_KEY`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `SESSION_SECRET`, `BASE_URL` (your Render URL)
-6. Add the production callback URL in Google Cloud: `https://your-app.onrender.com/auth/google/callback`
-7. Deploy — use the Render URL in your embed snippet
+2. [render.com](https://render.com/) → **New → Web Service** → connect repo
+3. Use these settings:
+   - **Build command:** `npm install`
+   - **Start command:** `npm start`
+   - **Health check path:** `/health`
+4. Add environment variables:
+
+| Variable | Value |
+|----------|--------|
+| `GROQ_API_KEY` | your Groq key |
+| `SUPABASE_URL` | `https://xxx.supabase.co` |
+| `SUPABASE_KEY` | service role key |
+| `GOOGLE_CLIENT_ID` | from Google Cloud |
+| `GOOGLE_CLIENT_SECRET` | from Google Cloud |
+| `SESSION_SECRET` | long random string |
+| `BASE_URL` | your Render URL, e.g. `https://widget-and-co.onrender.com` |
+| `ADMIN_EMAILS` | your Google email |
+
+5. Deploy, then copy your live URL
+6. Update `BASE_URL` on Render to match that URL exactly (no trailing slash)
+7. In Google Cloud, add redirect URI: `https://your-app.onrender.com/auth/google/callback`
+8. Check Render logs on startup — you should see `Google OAuth callback: https://...`
+
+Optional: import `render.yaml` from the repo root for a pre-filled service template.
 
 ### Railway
 
@@ -163,7 +182,8 @@ Both platforms offer free tiers suitable for demos and low-traffic sites.
 │   ├── groq.js            # Groq API helper
 │   └── auth.js            # Google OAuth (Passport)
 ├── middleware/
-│   └── requireAuth.js     # Protects builder API routes
+│   ├── requireAuth.js     # Protects builder API routes
+│   └── corsPublic.js      # CORS for embedded widgets
 ├── routes/
 │   ├── auth.js            # Google sign-in / logout
 │   ├── bots.js            # POST/GET bots, messages

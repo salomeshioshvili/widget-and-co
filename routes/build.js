@@ -1,11 +1,13 @@
 const express = require('express');
 const getSupabase = require('../lib/supabase');
+const corsPublic = require('../middleware/corsPublic');
 const { chatCompletion } = require('../lib/groq');
 const { getProductType } = require('../productTypes');
 
 const router = express.Router();
 
-router.post('/build', async (req, res) => {
+router.options('/build', corsPublic);
+router.post('/build', corsPublic, async (req, res) => {
   try {
     const { botId } = req.body;
 
