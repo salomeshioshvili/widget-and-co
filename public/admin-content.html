@@ -1,0 +1,53 @@
+  <div class="app-page">
+    <div class="page-head">
+      <h1>Platform <em>admin</em></h1>
+      <p class="page-sub" id="admin-user">Platform overview</p>
+    </div>
+
+    <nav class="admin-tabs" aria-label="Admin sections">
+      <button class="admin-tab active" data-tab="overview">Overview</button>
+      <button class="admin-tab" data-tab="bots">Bots</button>
+      <button class="admin-tab" data-tab="users">Users</button>
+      <button class="admin-tab" data-tab="blog">Blog</button>
+    </nav>
+
+    <section id="panel-overview" class="admin-panel active">
+      <div class="stat-grid" id="stat-grid"></div>
+    </section>
+
+    <section id="panel-bots" class="admin-panel">
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Type</th><th>Owner</th><th>Created</th><th></th></tr></thead>
+          <tbody id="bots-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="panel-users" class="admin-panel">
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>User</th><th>Email</th><th>Joined</th><th>Last login</th></tr></thead>
+          <tbody id="users-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="panel-blog" class="admin-panel">
+      <form id="blog-form" class="admin-form">
+        <h3>New blog post</h3>
+        <div class="field"><label for="post-slug">Slug</label><input type="text" id="post-slug" placeholder="my-blog-post" required></div>
+        <div class="field"><label for="post-title">Title</label><input type="text" id="post-title" required></div>
+        <div class="field"><label for="post-excerpt">Excerpt</label><input type="text" id="post-excerpt"></div>
+        <div class="field"><label for="post-content">Content</label><textarea id="post-content" rows="8" required></textarea></div>
+        <div class="field"><label><input type="checkbox" id="post-published" checked> Published</label></div>
+        <button type="submit" class="btn btn-primary">Create post</button>
+      </form>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Title</th><th>Slug</th><th>Status</th><th>Updated</th><th></th></tr></thead>
+          <tbody id="posts-table"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>

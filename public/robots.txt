@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /pricing
+Allow: /blog
+Allow: /contact
+Allow: /privacy
+Disallow: /api/
+Disallow: /auth/
+Disallow: /builder
+Disallow: /admin
+
+Sitemap: /sitemap.xml

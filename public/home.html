@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Widget &amp; Co — Build AI Chatbots &amp; Widgets for Your Website</title>
+  <meta name="description" content="Create embeddable AI chatbots, product quizzes, lead qualifiers, FAQ search, and review summaries for your business website. No code required — configure, test, and embed in minutes.">
+  <meta name="keywords" content="AI widget builder, website chatbot, embeddable chatbot, lead qualifier, FAQ bot, product quiz, review summarizer, small business AI">
+  <meta name="author" content="Widget &amp; Co">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{BASE_URL}}/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{BASE_URL}}/">
+  <meta property="og:title" content="Widget &amp; Co — Build AI Widgets for Your Website">
+  <meta property="og:description" content="Create embeddable AI chatbots, quizzes, lead qualifiers, and more. Configure, test, and embed on any website in minutes.">
+  <meta property="og:site_name" content="Widget &amp; Co">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Widget &amp; Co — Build AI Widgets for Your Website">
+  <meta name="twitter:description" content="Create embeddable AI chatbots, quizzes, lead qualifiers, and more. No code required.">
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "{{BASE_URL}}/#website",
+        "url": "{{BASE_URL}}/",
+        "name": "Widget & Co",
+        "description": "AI widget builder for small businesses. Create embeddable chatbots, quizzes, lead qualifiers, FAQ search, and review summaries.",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "{{BASE_URL}}/#app",
+        "name": "Widget & Co AI Widget Builder",
+        "url": "{{BASE_URL}}/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "A no-code tool to build and embed AI-powered widgets on any website.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "AI Chatbot for business websites",
+          "Product recommendation quiz",
+          "Lead qualification chatbot",
+          "FAQ search widget",
+          "Customer review summarizer"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "{{BASE_URL}}/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Widget & Co?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Widget & Co is an AI widget builder that lets business owners create embeddable chatbots, product quizzes, lead qualifiers, FAQ search tools, and review summaries without writing code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I add a widget to my website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After building your widget, copy the provided script tag and paste it before the closing body tag on your website, or add it to a WordPress Custom HTML block."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do visitors need to sign in to use my widget?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Only the business owner signs in with Google to build widgets. Website visitors interact with the embedded widget without any login."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What AI models power the widgets?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Widgets are powered by Groq using the Llama 3.3 70B model. API keys stay on the server and are never exposed to visitors."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="landing">
+    <header class="landing-header">
+      <a href="/" class="landing-logo" aria-label="Widget &amp; Co home">Widget &amp; Co</a>
+      <a href="/auth/google" class="btn btn-primary btn-sm">Sign in</a>
+    </header>
+
+    <main>
+      <section class="landing-hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Build AI widgets for your website in minutes</h1>
+        <p class="landing-lead">
+          Create embeddable chatbots, product quizzes, lead qualifiers, FAQ search, and review summaries.
+          Configure, test, and copy one line of code — works on any website or WordPress.
+        </p>
+        <a href="/auth/google" class="btn btn-google landing-cta">
+          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303C33.654 32.657 29.273 36 24 36c-5.522 0-10-4.478-10-10s4.478-10 10-10c2.426 0 4.652.86 6.391 2.278l6.016-6.016C33.436 9.053 28.9 7 24 7 13.507 7 5 15.507 5 26s8.507 19 19 19 19-8.507 19-19c0-1.274-.132-2.516-.389-3.717z"/>
+            <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 16.108 18.961 13 24 13c2.426 0 4.652.86 6.391 2.278l6.016-6.016C33.436 9.053 28.9 7 24 7c-7.682 0-14.344 4.337-17.694 10.691z"/>
+            <path fill="#4CAF50" d="M24 45c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.248 0-9.612-3.317-11.277-7.946l-6.522 5.025C9.505 39.556 16.227 45 24 45z"/>
+            <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C42.022 35.026 45 30.675 45 26c0-1.274-.132-2.516-.389-3.717z"/>
+          </svg>
+          Get started free with Google
+        </a>
+        <p id="login-error" class="login-error hidden">Sign-in failed. Please try again.</p>
+      </section>
+
+      <section class="landing-features" aria-labelledby="features-title">
+        <h2 id="features-title">Five AI products, one simple builder</h2>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Chatbot</h3>
+            <p>A friendly AI assistant that answers questions about your business, hours, and services.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Product Quiz</h3>
+            <p>Asks visitors 2–3 questions, then recommends the best product from your catalog.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Lead Qualifier</h3>
+            <p>Chats naturally while scoring visitors as hot or cold leads based on your criteria.</p>
+          </article>
+          <article class="feature-card">
+            <h3>FAQ Search</h3>
+            <p>Matches visitor questions to your FAQs and delivers answers in a warm, conversational tone.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Review Summarizer</h3>
+            <p>Summarizes customer reviews into sentiment and key themes — displayed as a static card.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="landing-how" aria-labelledby="how-title">
+        <h2 id="how-title">How it works</h2>
+        <ol class="how-steps">
+          <li><strong>Sign in</strong> with your Google account</li>
+          <li><strong>Pick</strong> a product type and fill in your business details</li>
+          <li><strong>Test</strong> your widget in a live preview</li>
+          <li><strong>Embed</strong> one script tag on your website or WordPress</li>
+        </ol>
+      </section>
+
+      <section class="landing-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <dl class="faq-list">
+          <dt>Do I need to code?</dt>
+          <dd>No. Fill in a form, test, and copy the embed snippet. No JavaScript or HTML knowledge required.</dd>
+          <dt>Is visitor data private?</dt>
+          <dd>Yes. Visitor messages are anonymous — no IP logging or personal identifying information.</dd>
+          <dt>Where does the widget run?</dt>
+          <dd>The widget appears as a chat bubble or card in the corner of any page where you paste the embed code.</dd>
+          <dt>What powers the AI?</dt>
+          <dd>Groq with Llama 3.3 70B. API keys stay on our server and are never sent to the browser.</dd>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="landing-footer">
+      <p>&copy; Widget &amp; Co — AI Widget Builder for small businesses</p>
+      <nav aria-label="Footer">
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+  <script>
+    if (new URLSearchParams(location.search).get('error')) {
+      document.getElementById('login-error').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

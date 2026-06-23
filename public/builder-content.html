@@ -1,35 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Widget Builder</title>
-  <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-  <div class="app">
-    <header class="header">
-      <div class="header-row">
-        <div>
-          <h1>AI Widget Builder</h1>
-          <p class="subtitle">Pick a product, configure it, test it, embed it.</p>
-        </div>
-        <div class="user-bar" id="user-bar">
-          <img id="user-avatar" class="user-avatar hidden" alt="">
-          <span id="user-name"></span>
-          <button id="btn-logout" class="btn btn-secondary btn-sm">Sign out</button>
-        </div>
-      </div>
-    </header>
+  <div class="app-page">
+    <div class="page-head">
+      <h1>Widget <em>builder</em></h1>
+      <p class="page-sub">Configure, test, and share in four steps</p>
+    </div>
 
     <nav class="steps" aria-label="Progress">
-      <div class="step active" data-step="1"><span>1</span> Product</div>
-      <div class="step" data-step="2"><span>2</span> Config</div>
-      <div class="step" data-step="3"><span>3</span> Test</div>
-      <div class="step" data-step="4"><span>4</span> Embed</div>
+      <div class="step active" data-step="1"><span class="step-num">1</span><span class="step-label">Product</span></div>
+      <div class="step" data-step="2"><span class="step-num">2</span><span class="step-label">Config</span></div>
+      <div class="step" data-step="3"><span class="step-num">3</span><span class="step-label">Test</span></div>
+      <div class="step" data-step="4"><span class="step-num">4</span><span class="step-label">Share</span></div>
     </nav>
 
-    <!-- Step 1: Pick product type -->
     <section id="step-1" class="panel active">
       <h2>Choose a product type</h2>
       <div id="product-cards" class="product-cards"></div>
@@ -38,7 +19,6 @@
       </div>
     </section>
 
-    <!-- Step 2: Config form -->
     <section id="step-2" class="panel">
       <h2>Configure your widget</h2>
       <form id="config-form" class="config-form">
@@ -54,7 +34,6 @@
       </div>
     </section>
 
-    <!-- Step 3: Test / preview -->
     <section id="step-3" class="panel">
       <h2>Test your widget</h2>
       <div id="chat-preview" class="preview-chat hidden">
@@ -73,30 +52,45 @@
       </div>
       <div class="actions">
         <button type="button" class="btn btn-secondary" data-back="2">Back</button>
-        <button id="btn-step3-next" class="btn btn-primary">Get Embed Code</button>
+        <button id="btn-step3-next" class="btn btn-primary">Get link &amp; embed code</button>
       </div>
     </section>
 
-    <!-- Step 4: Embed -->
     <section id="step-4" class="panel">
-      <h2>Embed on your website</h2>
-      <p>Copy this snippet and paste it before the closing <code>&lt;/body&gt;</code> tag, or into a WordPress Custom HTML block.</p>
-      <div class="embed-box">
-        <pre id="embed-snippet"></pre>
-        <button id="btn-copy" class="btn btn-primary">Copy to Clipboard</button>
+      <h2>Share with customers</h2>
+      <p class="panel-lead">Copy a link or embed code — or find both anytime in Dashboard.</p>
+
+      <div class="share-card share-card--link">
+        <div class="share-card-icon">Link</div>
+        <div class="share-card-body">
+          <h3>Share link <span class="pill">No website needed</span></h3>
+          <p>Text, email, or social — customers chat on your hosted page.</p>
+          <div class="share-row">
+            <input type="text" id="share-url" readonly aria-label="Share link">
+            <button type="button" id="btn-copy-share" class="btn btn-primary btn-sm">Copy</button>
+          </div>
+          <a id="share-preview" href="#" target="_blank" rel="noopener" class="text-link">Preview page</a>
+        </div>
       </div>
+
+      <div class="share-card share-card--embed">
+        <div class="share-card-icon">Code</div>
+        <div class="share-card-body">
+          <h3>Embed code</h3>
+          <p>Paste on any website or WordPress Custom HTML block.</p>
+          <pre id="embed-snippet" class="embed-pre"></pre>
+          <button type="button" id="btn-copy" class="btn btn-secondary btn-sm">Copy embed</button>
+        </div>
+      </div>
+
       <div class="messages-review">
-        <h3>Visitor Messages</h3>
-        <p class="hint">Anonymous messages from visitors using your widget (most recent first).</p>
+        <h3>Visitor messages</h3>
         <div id="visitor-messages" class="visitor-messages"></div>
       </div>
       <div class="actions">
         <button type="button" class="btn btn-secondary" data-back="3">Back</button>
-        <button id="btn-start-over" class="btn btn-secondary">Start Over</button>
+        <a href="/dashboard" class="btn btn-primary">Open Dashboard</a>
+        <button id="btn-start-over" class="btn btn-ghost">New widget</button>
       </div>
     </section>
   </div>
-
-  <script src="/js/builder.js"></script>
-</body>
-</html>

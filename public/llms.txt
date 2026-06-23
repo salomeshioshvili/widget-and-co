@@ -1,0 +1,40 @@
+# Widget & Co — AI Widget Builder
+
+> Build embeddable AI widgets for your business website in minutes. No coding required.
+
+## Pages
+
+- Home: /
+- About: /about
+- Pricing: /pricing
+- Blog: /blog
+- Contact: /contact
+- Privacy: /privacy
+- Builder (sign-in required): /builder
+- Admin (owner only): /admin
+
+## What is this?
+
+Widget & Co is a no-code AI widget builder for small businesses. Create chatbots, product quizzes, lead qualifiers, FAQ search widgets, and review summarizers. Configure, test, and embed with one script tag.
+
+## Product types
+
+1. **Chatbot** — Answers visitor questions about your business.
+2. **Product Quiz** — Recommends products after 2–3 questions.
+3. **Lead Qualifier** — Scores hot and cold leads in conversation.
+4. **FAQ Search** — Matches questions to FAQs with friendly AI answers.
+5. **Review Summarizer** — Static card showing review sentiment and themes.
+
+## Blog topics
+
+- Why small businesses need AI chatbots
+- How to embed AI widgets on WordPress
+- Lead qualifier vs contact forms
+
+## Key facts
+
+- Free to use
+- Google sign-in for business owners
+- Groq AI (Llama 3.3 70B) powers responses
+- Visitor messages are anonymous
+- API keys never exposed to browsers

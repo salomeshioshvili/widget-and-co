@@ -1,0 +1,48 @@
+  <div class="app-page">
+    <div class="page-head">
+      <h1>Your <em>dashboard</em></h1>
+      <p class="page-sub">Share links, track visitors, manage widgets</p>
+    </div>
+
+    <div id="dashboard-empty" class="panel active hidden">
+      <div class="empty-card">
+        <p>No widgets yet.</p>
+        <a href="/builder" class="btn btn-primary">Create your first widget</a>
+      </div>
+    </div>
+
+    <div id="dashboard-list" class="dashboard-list"></div>
+
+    <div id="dashboard-detail" class="panel hidden">
+      <button type="button" id="btn-back-list" class="text-link back-btn">← All widgets</button>
+      <h2 id="detail-name" class="detail-title"></h2>
+      <p class="page-sub" id="detail-type"></p>
+
+      <div class="stat-grid detail-stats" id="detail-stats"></div>
+
+      <div class="share-card share-card--link">
+        <div class="share-card-icon">Link</div>
+        <div class="share-card-body">
+          <h3>Share link</h3>
+          <div class="share-row">
+            <input type="text" id="detail-share-url" readonly>
+            <button type="button" id="btn-copy-share" class="btn btn-primary btn-sm">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="share-card share-card--embed">
+        <div class="share-card-icon">Code</div>
+        <div class="share-card-body">
+          <h3>Embed code</h3>
+          <pre id="detail-embed" class="embed-pre"></pre>
+          <button type="button" id="btn-copy-embed" class="btn btn-secondary btn-sm">Copy</button>
+        </div>
+      </div>
+
+      <div class="messages-review">
+        <h3>Recent visitor messages</h3>
+        <div id="detail-messages" class="visitor-messages"></div>
+      </div>
+    </div>
+  </div>

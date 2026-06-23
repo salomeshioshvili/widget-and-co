@@ -38,3 +38,32 @@ create index idx_bots_owner_id on bots(owner_id);
 alter table bots disable row level security;
 alter table conversations disable row level security;
 alter table messages disable row level security;
+
+-- Users (saved on Google sign-in)
+create table if not exists users (
+  id text primary key,
+  email text,
+  name text,
+  picture text,
+  created_at timestamptz default now(),
+  last_login_at timestamptz default now()
+);
+
+-- Blog posts (SEO / GEO content)
+create table if not exists blog_posts (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  title text not null,
+  excerpt text,
+  content text not null,
+  published boolean default false,
+  published_at timestamptz,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create index if not exists idx_blog_posts_published on blog_posts(published, published_at desc);
+create index if not exists idx_bots_owner_id on bots(owner_id);
+
+alter table users disable row level security;
+alter table blog_posts disable row level security;

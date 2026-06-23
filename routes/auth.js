@@ -7,9 +7,9 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 router.get(
   '/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login?error=auth_failed' }),
+  passport.authenticate('google', { failureRedirect: '/?error=auth_failed' }),
   (_req, res) => {
-    res.redirect('/');
+    res.redirect('/builder');
   }
 );
 
@@ -22,11 +22,13 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+const { isAdmin } = require('../middleware/requireAdmin');
+
 router.get('/me', (req, res) => {
   if (!req.isAuthenticated || !req.isAuthenticated()) {
     return res.status(401).json({ error: 'Not authenticated' });
   }
-  res.json({ user: req.user });
+  res.json({ user: req.user, isAdmin: isAdmin(req) });
 });
 
 module.exports = router;

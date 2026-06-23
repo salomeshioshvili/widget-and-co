@@ -80,8 +80,6 @@ alter table messages disable row level security;
 alter table messages disable row level security;
 ```
 
-If you already ran an older version of the schema, also run `sql/migration-add-owner.sql` to add the `owner_id` column.
-
 ## 3. Set Up Google Sign-In
 
 The builder requires Google sign-in. Embedded widgets on customer sites stay public (no login for visitors).
@@ -95,6 +93,9 @@ The builder requires Google sign-in. Embedded widgets on customer sites stay pub
 6. Add to `.env`:
    - `SESSION_SECRET` — any long random string (e.g. `openssl rand -hex 32`)
    - `BASE_URL` — `http://localhost:3000` locally (no trailing slash)
+   - `ADMIN_EMAILS` — your Google email (for `/admin` dashboard access)
+
+Run `sql/migration-blog-admin.sql` in Supabase to create the blog and users tables (includes 3 seed posts).
 
 ## 4. Run Locally
 
@@ -106,7 +107,7 @@ npm install
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — you'll be redirected to sign in with Google before building.
+Open [http://localhost:3000](http://localhost:3000) — public landing page with sign-in. After Google auth you'll reach the builder at `/builder`.
 
 ### Test with curl
 
@@ -180,7 +181,11 @@ Both platforms offer free tiers suitable for demos and low-traffic sites.
 
 | Method | Path | Auth | Description |
 |--------|------|------|-------------|
-| GET | `/login` | — | Sign-in page |
+| GET | `/` | — | Public landing page (SEO) |
+| GET | `/builder` | required | Widget builder UI |
+| GET | `/sitemap.xml` | — | XML sitemap |
+| GET | `/llms.txt` | — | AI crawler info (GEO) |
+| GET | `/login` | — | Redirects to `/` |
 | GET | `/auth/google` | — | Start Google OAuth |
 | GET | `/auth/me` | session | Current user |
 | POST | `/auth/logout` | session | Sign out |

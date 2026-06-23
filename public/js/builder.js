@@ -28,7 +28,7 @@
     });
     const data = await res.json();
     if (res.status === 401) {
-      window.location.href = '/login';
+      window.location.href = '/';
       throw new Error('Please sign in');
     }
     if (!res.ok) throw new Error(data.error || 'Request failed');
@@ -38,15 +38,19 @@
   async function loadUser() {
     const res = await fetch('/auth/me', { credentials: 'same-origin' });
     if (!res.ok) {
-      window.location.href = '/login';
+      window.location.href = '/';
       return;
     }
-    const { user } = await res.json();
-    $('#user-name').textContent = user.name || user.email;
+    const { user, isAdmin } = await res.json();
+    $('#user-name').textContent = user.name || user.email.split('@')[0];
     if (user.picture) {
       const avatar = $('#user-avatar');
       avatar.src = user.picture;
       avatar.classList.remove('hidden');
+    }
+    if (isAdmin) {
+      const adminTab = document.getElementById('admin-nav-link');
+      if (adminTab) adminTab.classList.remove('hidden');
     }
   }
 
@@ -330,6 +334,12 @@
 
   function updateEmbedSnippet() {
     const origin = window.location.origin;
+    const shareUrl = `${origin}/w/${state.botId}`;
+    $('#share-url').value = shareUrl;
+    const preview = $('#share-preview');
+    if (preview) {
+      preview.href = shareUrl;
+    }
     const snippet = `<script src="${origin}/widget.js" data-bot-id="${state.botId}"><\/script>`;
     $('#embed-snippet').textContent = snippet;
   }
@@ -430,10 +440,15 @@
   });
 
   $('#btn-copy').addEventListener('click', async () => {
-    const text = $('#embed-snippet').textContent;
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText($('#embed-snippet').textContent);
     $('#btn-copy').textContent = 'Copied!';
-    setTimeout(() => ($('#btn-copy').textContent = 'Copy to Clipboard'), 2000);
+    setTimeout(() => ($('#btn-copy').textContent = 'Copy embed'), 2000);
+  });
+
+  $('#btn-copy-share').addEventListener('click', async () => {
+    await navigator.clipboard.writeText($('#share-url').value);
+    $('#btn-copy-share').textContent = 'Copied!';
+    setTimeout(() => ($('#btn-copy-share').textContent = 'Copy link'), 2000);
   });
 
   $('#btn-start-over').addEventListener('click', () => {
@@ -445,11 +460,6 @@
     $('#btn-step1-next').disabled = true;
     $('#config-form').reset();
     goToStep(1);
-  });
-
-  $('#btn-logout').addEventListener('click', async () => {
-    await fetch('/auth/logout', { method: 'POST', credentials: 'same-origin' });
-    window.location.href = '/login';
   });
 
   $$('[data-back]').forEach((btn) => {
